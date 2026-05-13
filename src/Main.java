@@ -8,5 +8,9 @@ public class InventarioLetras {
         letras = new int [27];
         totalcnt = 0;
         conteovacio = 0;
+
+        for (int i = 0; i < datos.length(); i++) {
+            char c = Character.toLowerCase(datos.charAt(i));
+        }
     }
 }
