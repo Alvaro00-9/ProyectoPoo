@@ -46,4 +46,98 @@ public class InventarioLetras {
     }
 
     /// Desencriptar Cesár
+
+    public char decriptarCesar(char letra) {
+        int indice = getIndice(letra);
+        return (char) ((indice -3) % 26 + 'a');
+    }
+
+
+    /// ENCRIPTACIÓN
+
+    public String encriptarPalabra(String palabra, int desplazamiento) {
+        String resultado = "";
+        for (int i = 0; i < palabra.length(); i++) {
+            char c = Character.toLowerCase(palabra.charAt(i));
+            if (c >= 'a' && c <= 'z') {
+                int indice = c - 'a';
+
+                char nueva =
+                        (char) ((indice + desplazamiento) % 26 + 'a');
+                resultado = resultado + nueva;
+
+            } else{
+                resultado = resultado + c;
+            }
+        }
+        return resultado; ///Gran parte de este bloque lo hizo auttomaticamente el Compilador, pero al revisar ví que si complementaba correctamente al código
+    }
+
+    /// DESENCRIPTACIÓN
+    public String desencriptarPalabra(String palabra, int desplazamiento) {
+        String resultado = "";
+        for (int i = 0; i < palabra.length(); i++) {
+            char c = Character.toLowerCase(palabra.charAt(i));
+            if (c >= 'a' && c <= 'z') {
+                int indice = c - 'a';
+
+                char nueva =
+                        (char) ((indice - desplazamiento + 26) % 26 + 'a');
+                resultado = resultado + nueva;
+            }  else{
+                resultado = resultado + c;
+            }
+        }
+        return resultado;
+    }
+
+
+    /// MÉTODO GETTER O  GET
+    public int get(char letra) { //Conteo de una letra
+        return letras[getIndice(letra)];
+    }
+    /// SETTER O SET
+
+    public void set(char letra, int valor) {
+        if (valor < 0) {
+            throw new IllegalArgumentException("Valor Inválido");
+        }
+
+        int indice = getIndice(letra);
+
+        /// Ajuste de totalCount
+        totalCount -= letras[indice];
+        totalCount += valor;
+
+        /// Ajuste de nonZeroCount
+        if (letras[indice] == 0 && valor > 0) {
+            nonZeroCount++;
+        }
+        if (letras[indice] > 0 && valor == 0) {
+            nonZeroCount--;
+        }
+        letras[indice] = valor;
+    }
+
+
+    /// SIze
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
