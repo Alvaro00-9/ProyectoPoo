@@ -6,14 +6,14 @@ public class InventarioLetras {
 
     //Decidí expresar mejor las ideas dentro del código, de forma más ordenada
 
-   ///Método Auxiliar, para llamarlo sin tener que repetir su escritura en varias partes del texto, cosa había hecho en el prototipo de este código (No guardado)
+    ///Método Auxiliar, para llamarlo sin tener que repetir su escritura en varias partes del texto, cosa había hecho en el prototipo de este código (No guardado)
 
     private int getIndice(char letra) {
-       letra =  Character.toLowerCase(letra);
-       if (letra < 'a' || letra > 'z') {
-           throw new IllegalArgumentException("Carácter no Válido");
-       }
-       return letra - 'a';
+        letra =  Character.toLowerCase(letra);
+        if (letra < 'a' || letra > 'z') {
+            throw new IllegalArgumentException("Carácter no Válido");
+        }
+        return letra - 'a';
     }
 
     ///Método Constructor
@@ -126,24 +126,90 @@ public class InventarioLetras {
         return totalCount;
     }
 
+    /// isEmpty. Indica true si no hay letras
+
+    public boolean isEmpty() {
+        return nonZeroCount == 0;
+    }
 
 
+    /// toString. Representación del "Inventario"
+
+    public String toString() {
+
+        String resultado = "[";
+        for (int i = 0; i < 26; i++) {
+            for (int j = 0; j < letras[i]; j++) {
+                resultado += (char)(i + 'a');
+            }
+        }
+
+        resultado += "]";
+
+        return resultado;
+    }
+
+    /// ADD o INVENTARIO LETRAS ADD
 
 
+    public InventarioLetras add(InventarioLetras otro) {
 
+        InventarioLetras nuevo =
+                new InventarioLetras("");
+        for (int i = 0; i < 26; i++) {
 
+            nuevo.letras[i] =
+                    this.letras[i] + otro.letras[i];
 
+            if (nuevo.letras[i] >0) {
+                nuevo.nonZeroCount++;
+            }
+            nuevo.totalCount += nuevo.letras[i];
+        }
+        return nuevo;
+    }
+    /// Amplifies (Int n)
 
+    public InventarioLetras amplifies(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("Válor Inválido");
+        }
 
+        InventarioLetras nuevo =
+                new InventarioLetras("");
+        for (int i = 0; i < 26; i++) {
+            nuevo.letras[i] = this.letras[i] * n;
 
+            if (nuevo.letras[i] > 0) {
+                nuevo.nonZeroCount++;
+            }
+            nuevo.totalCount += nuevo.letras[i];
+        }
+        return nuevo;
+    }
+    /// Resta de Inventarios
 
+    public InventarioLetras subtract(InventarioLetras otro) {
+        InventarioLetras nuevo =
+                new InventarioLetras("");
+        for (int i = 0; i < 26; i++) {
 
+            int resultado =
+                    this.letras[i] - otro.letras[i];
 
+            /// Retorno null en caso de ser necesario
+            if (resultado < 0) {
+                return null;
+            }
+            nuevo.letras[i] = resultado;
 
+            if (resultado > 0) {
+                nuevo.nonZeroCount++;
+            }
+            nuevo.totalCount += resultado;
 
-
-
-
-
+        }
+        return nuevo;
+    }
 
 }
