@@ -25,7 +25,7 @@ public class InventarioLetras {
         for (int i = 0; i < data.length(); i++) {
             char c = Character.toLowerCase(data.charAt(i));
             /// Verificación de letras Inglesas; En el orden del formato ASCI
-            if  (c == 'a' && c == 'z') {
+            if  (c >= 'a' && c <= 'z') {
                 int indice = c - 'a';
 
                 /// La letra se cuenta por primera vez
@@ -38,8 +38,12 @@ public class InventarioLetras {
         }
     }
 
-    /// ENCRIPTADO CESÁR/CAESAR/CESARIN
+    /// ENCRIPTADO CESÁR
 
+    public char encriptarCesar(char letra) {
+        int indice = getIndice(letra);
+        return (char) ((indice +3) % 26 + 'a');
+    }
 
-
+    /// Desencriptar Cesár
 }
