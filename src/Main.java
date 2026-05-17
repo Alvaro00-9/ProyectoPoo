@@ -122,6 +122,12 @@ public class InventarioLetras {
 
     /// SIze
 
+    public int size() {
+        return totalCount;
+    }
+
+
+
 
 
 
