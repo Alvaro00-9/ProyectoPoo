@@ -187,7 +187,7 @@ public class InventarioLetras {
             nuevo.totalCount += nuevo.letras[i];
         }
         return nuevo;
-    }
+    } m
 
 
 
