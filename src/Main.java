@@ -208,7 +208,7 @@ public class InventarioLetras {
             }
             nuevo.totalCount += resultado;
 
-        }
+        } 
         return nuevo;
     }
 
